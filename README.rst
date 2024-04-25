@@ -1,7 +1,5 @@
 ZSH Auto-Dunstify
-===============
-
-|CircleCI| |Version| |GPLv3|
+=================
 
 Simple zsh plugin that automatically sends out a notification when a long running task
 has completed.
