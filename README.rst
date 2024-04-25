@@ -1,4 +1,4 @@
-ZSH Auto-Notify
+ZSH Auto-Dunstify
 ===============
 
 |CircleCI| |Version| |GPLv3|
@@ -7,7 +7,7 @@ Simple zsh plugin that automatically sends out a notification when a long runnin
 has completed.
 
 Useful for those commands you don't predict will take long to run or just plain forgot
-to keep track of. Leave the task running and go do something else - ``auto-notify`` will
+to keep track of. Leave the task running and go do something else - ``auto-dunstify`` will
 let you know when the task is done! :tada:
 
 * Usage_
@@ -22,7 +22,7 @@ Usage
 -----
 
 You don't need to do anything. Once it's installed,
-``zsh-auto-notify`` will let you know if a long running task has completed its work via a
+``zsh-auto-dunstify`` will let you know if a long running task has completed its work via a
 notification in your desktop environment.
 
 .. image:: img/notification-example.png
@@ -30,15 +30,14 @@ notification in your desktop environment.
 Requirements
 ------------
 
-``auto-notify`` officially supports zsh versions 5.1 onwards.
+``auto-dunstify`` officially supports zsh versions 5.1 onwards.
 
 It is possible the plugin might work on even older versions.
 However they would not have been tested as part of the CI test process.
 
 Supported desktop environments:
 
-* Linux X/Wayland (Requires ``notify-send`` to be installed)
-* MacOSX
+* Linux X/Wayland (Requires ``dunst`` to be installed)
 
 Installation
 ------------
@@ -50,23 +49,21 @@ ZPlug_
 
 ::
 
-    zplug "MichaelAquilina/zsh-auto-notify"
+    zplug "Amir1453/zsh-auto-dunstify"
 
 Antigen_
 
 ::
 
-    antigen bundle "MichaelAquilina/zsh-auto-notify"
-
+    antigen bundle "Amir1453/zsh-auto-dunstify"
 Zgen_
 
 ::
 
-    zgen load "MichaelAquilina/zsh-auto-notify"
-
+    zgen load "Amir1453/zsh-auto-dunstify"
 Fig_
 
-Install ``zsh-auto-notify`` with Fig in just one click.
+Install ``zsh-auto-dunstify`` with Fig in just one click.
 
 .. image:: https://fig.io/badges/install-with-fig.svg
   :target: https://fig.io/plugins/other/zsh-auto-notify_MichaelAquilina
@@ -78,14 +75,14 @@ Copy this repository to ``$ZSH_CUSTOM/custom/plugins``, where ``$ZSH_CUSTOM``
 is the directory with custom plugins of oh-my-zsh `(read more) <https://github.com/robbyrussell/oh-my-zsh/wiki/Customization/>`_:
 ::
 
-    git clone https://github.com/MichaelAquilina/zsh-auto-notify.git $ZSH_CUSTOM/plugins/auto-notify
+    git clone https://github.com/Amir1453/zsh-auto-dunstify.git $ZSH_CUSTOM/plugins/auto-dunstify
 
 
 Then add this line to your ``.zshrc``. Make sure it is **before** the line ``source $ZSH/oh-my-zsh.sh``.
 
 ::
 
-    plugins=(auto-notify $plugins)
+    plugins=(auto-dunstify $plugins)
 
 
 Configuration
@@ -93,7 +90,7 @@ Configuration
 
 **Notification Threshold**
 
-By default, ``auto-notify`` will send notifications for tasks that take longer than 10 seconds. You
+By default, ``auto-dunstify`` will send notifications for tasks that take longer than 10 seconds. You
 can configure this value by setting the environment variable ``AUTO_NOTIFY_THRESHOLD``:
 
 ::
@@ -105,7 +102,7 @@ can configure this value by setting the environment variable ``AUTO_NOTIFY_THRES
 
 You can change the formatting of notifications by setting the values for ``AUTO_NOTIFY_TITLE`` and
 ``AUTO_NOTIFY_BODY``. When writing these values, the following variables will be replaced according to
-the data that ``auto-notify`` has detected:
+the data that ``auto-dunstify`` has detected:
 
 * ``%command`` - the command that the user executed
 * ``%elapsed`` - number of seconds that elapsed
@@ -120,7 +117,7 @@ An example of how these values can be set is shown below:
 
 **Notification Expiration Time**
 
-You can set how long a notification sent by ``auto-notify`` will remain showing by setting the environment
+You can set how long a notification sent by ``auto-dunstify`` will remain showing by setting the environment
 variable ``AUTO_NOTIFY_EXPIRE_TIME`` to a custom value in milliseconds. The default value is set to 8 seconds.
 NOTE: This configuration option currently only works for Linux.
 
@@ -155,7 +152,7 @@ a new array.
 
 If you wish to use a whitelist approach instead of the default blacklist approach used by ``AUTO_NOTIFY_IGNORE``,
 you can do so by defining the environment variable ``AUTO_NOTIFY_WHITELIST`` with the elements you wish to
-allow ``auto-notify`` to track and send notifications for. NOTE: If ``AUTO_NOTIFY_WHITELIST`` is defined,
+allow ``auto-dunstify`` to track and send notifications for. NOTE: If ``AUTO_NOTIFY_WHITELIST`` is defined,
 then all the values in ``AUTO_NOTIFY_IGNORE`` are not used.
 
 ::
