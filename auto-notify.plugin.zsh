@@ -52,11 +52,9 @@ function _auto_notify_message() {
 
     if [[ "$platform" == "Linux" ]]; then
         local urgency="normal"
-        local transient="--hint=int:transient:1"
         local icon=${AUTO_NOTIFY_ICON_SUCCESS:-""}
         if [[ "$exit_code" != "0" ]]; then
             urgency="critical"
-            transient=""
             icon=${AUTO_NOTIFY_ICON_FAILURE:-""}
         fi
 	local icon_arg=""
@@ -64,7 +62,7 @@ function _auto_notify_message() {
 		icon_arg="--icon=$icon"
 	fi
 
-        notify-send "$title" "$body" --app-name=zsh $transient "--urgency=$urgency" "--expire-time=$AUTO_NOTIFY_EXPIRE_TIME" "$icon_arg"
+        dunstify "$title" "$body" --appname=zsh "--urgency=$urgency" "--timeout=$AUTO_NOTIFY_EXPIRE_TIME" "$icon_arg"
     elif [[ "$platform" == "Darwin" ]]; then
         osascript \
           -e 'on run argv' \
@@ -175,8 +173,8 @@ _auto_notify_reset_tracking
 
 
 platform="$(uname)"
-if [[ "$platform" == "Linux" ]] && ! type notify-send > /dev/null; then
-    printf "'notify-send' must be installed for zsh-auto-notify to work\n"
+if [[ "$platform" == "Linux" ]] && ! type dunstify > /dev/null; then
+    printf "'dunst' must be installed for zsh-auto-notify to work\n"
     printf "Please install it with your relevant package manager\n"
 else
     enable_auto_notify
